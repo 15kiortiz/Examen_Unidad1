@@ -1,240 +1,116 @@
 # Examen_Unidad1
-
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
-public class Avionjimmy extends JFrame{
+public class Examen1 extends JFrame {
 
-    //Declarar Button
-    private  JButton buttonl;
-    private  JButton buttonRe;
-    private  JButton buttonOp1;
-    private  JButton buttonP;
-    private  JButton buttonOp2;
-    private  JButton buttonB;
+    private  JButton btn,btn2,btn3;
+    private JTextField txt;
+    private  JComboBox<Integer> cb1;
+    private JComboBox<Integer> cb2;
+    private JComboBox<Integer> cb3;
+    private JLabel label1;
+    private JLabel label2;
+    private JLabel label3;
 
-    //Declarar vector de JPanels de Asientos VIP
-    private JButton[] asientosVIP;
-    private JButton[] asientosNormales;
-    //   Asientos vip
+    public Examen1() {
 
-    private  JButton AV1;
-    private  JButton AV2;
-    private  JButton AV3;
-    private  JButton AV4;
-    private  JButton AV5;
-    private  JButton AV6;
-    private  JButton AV7;
-    private  JButton AV8;
+        //Titulo de la ventana a mostrar
+        super("Calculo de Velocidad");
 
+        //Creación del boton para presionar y calcular
+        btn = new JButton("Calcular Velocidad");
+        btn2 = new JButton("Calcular Tiempo");
+        btn3 = new JButton("Calcular Distancia");
+        //creación del textfield
+        txt = new JTextField(10);
+        txt.setEditable(false);
 
-    public Avionjimmy(){
+        //creacion de JcomoBox para Tener los números de 1 al 100 para poder calcular la velocidad con base
+        //a las distancia y tiempo dado
+        cb1 = new JComboBox<>();
+        cb2 = new JComboBox<>();
+        cb3 = new JComboBox<>();
 
-        super("Airline TZEK'S");
+        //Creacion de los labels para identificar que indica cada número
+        label1 = new JLabel("Distancia");
+        label2 = new JLabel("Tiempo");
+        label3 = new JLabel("Velocidad");
 
-        //Botones principales
-        JPanel ven1 = new JPanel();
+        //Agregacion de las variables creadas para agregar al contendor Principal con su layout respectivo
+        getContentPane().setLayout(new GridLayout(5, 2));
 
-        //Panel principal lado izquierdo
-        JPanel ventanaIzq = new JPanel();
+        //Agregar en el gridLayout
+        getContentPane().add(label1);
+        getContentPane().add(cb1);
+        getContentPane().add(label2);
+        getContentPane().add(cb2);
+        getContentPane().add(label3);
+        getContentPane().add(cb3);
+        getContentPane().add(btn);
+        getContentPane().add(btn2);
+        getContentPane().add(btn3);
+        getContentPane().add(txt);
 
-        //Panel principal lado derecho
-        JPanel ventanaDerecha = new JPanel();
-
-        //Parte VIP¨lado izq
-        JPanel vent2= new JPanel();
-        //Parte normal lado izq
-        JPanel vent3 = new JPanel();
-        //Parte VIP lado derecho
-        JPanel vent4 = new JPanel();
-        //Parte normal lado derecho
-        JPanel vent5 = new JPanel();
-
-
-        //  JLabel picture = new JLabel(new ImageIcon("src/avion.png"));
-
-        asientosVIP = new JButton[8];
-        asientosNormales = new JButton[42];
-        //uso de botones principales
-        buttonRe = new JButton("Registrar Pasajero");
-
-        ven1.add(buttonRe);
-
-        buttonl = new JButton("Eliminar Pasajero");
-        ven1.add(buttonl);
-
-        buttonB = new JButton("Buscar Pasajero");
-        ven1.add(buttonB);
-
-        buttonP = new JButton("Porcentaje de Ocupación");
-        ven1.add(buttonP);
-
-        buttonOp1 = new JButton("Opción 1");
-        ven1.add(buttonOp1);
-
-        buttonOp2 = new JButton("Opción 2");
-        ven1.add(buttonOp2);
-
-        int comprobacion = 0;
-        int panelALlenar = 1;
-
-        //Se crean los primeros asientos
-        for(int i = 0; i<8;i++){
-            if(panelALlenar == 1){
-                asientosVIP[i] = new JButton(""+(i+1));
-                vent2.add(asientosVIP[i]);
-                comprobacion++;
-            }else if(panelALlenar == 2){
-                asientosVIP[i] = new JButton(""+(i+1));
-                vent4.add(asientosVIP[i]);
-                comprobacion++;
-            }
-            if(comprobacion == 2 && panelALlenar == 1){
-                comprobacion = 0;
-                panelALlenar = 2;
-            }else if(comprobacion == 2 && panelALlenar == 2){
-                comprobacion = 0;
-                panelALlenar = 1;
-            }
+        //creacion de un for para que el usuario pueda escoger entre esos números
+        for (int i = 0; i <= 100; i++) {
+            cb1.addItem(Integer.valueOf(i));
+            cb2.addItem(Integer.valueOf(i));
+            cb3.addItem(Integer.valueOf(i));
         }
-        //Se crean los últimos asientos
 
-        for(int i = 0; i<42;i++){
-            if(panelALlenar == 1){
-                asientosNormales[i] = new JButton(""+(i+9));
-                vent3.add(asientosNormales[i]);
-                comprobacion++;
-            }else if(panelALlenar == 2){
-                asientosNormales[i] = new JButton(""+(i+9));
-                vent5.add(asientosNormales[i]);
-                comprobacion++;
-            }
-            if(comprobacion == 3 && panelALlenar == 1){
-                comprobacion = 0;
-                panelALlenar = 2;
-            }else if(comprobacion == 3 && panelALlenar == 2){
-                comprobacion = 0;
-                panelALlenar = 1;
-            }
-        }
-        //JButton a = new JButton("asdasd");
-
-        //vent4.add(a);
-
-//color
-        ven1.setBackground(Color.CYAN);
-        ven1.setLayout(new GridLayout(2,3));
-        ven1.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
-
-        ventanaIzq.setBackground(Color.LIGHT_GRAY);
-        ventanaIzq.setLayout(new GridLayout(2,1));
-        ventanaIzq.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
-
-        ventanaDerecha.setBackground(Color.LIGHT_GRAY);
-        ventanaDerecha.setLayout(new GridLayout(2,1));
-        ventanaDerecha.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
-
-        ventanaIzq.add(vent2);
-        ventanaIzq.add(vent3);
-        ventanaDerecha.add(vent4);
-        ventanaDerecha.add(vent5);
-
-        vent2.setBackground(Color.GREEN);
-        vent2.setLayout(new GridLayout(2,2));
-        vent2.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
-
-        vent3.setBackground(Color.LIGHT_GRAY);
-        vent3.setLayout(new GridLayout(7,3));
-        vent3.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
-
-
-        vent4.setBackground(Color.GREEN);
-        vent4.setLayout(new GridLayout(2,2));
-        vent4.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
-
-        vent5.setBackground(Color.LIGHT_GRAY);
-        vent5.setLayout(new GridLayout(7,3));
-        vent5.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
-
-
-
-        //vent4.setBackground(Color.LIGHT_GRAY);
-        //vent4.setLayout(new GridLayout(2,2));
-        //vent4.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
-        getContentPane().add(ven1,BorderLayout.NORTH);
-        getContentPane().add(ventanaIzq,BorderLayout.WEST);
-        getContentPane().add(ventanaDerecha,BorderLayout.EAST);
-
-
-        //getContentPane().add(vent2,BorderLayout.WEST);
-        //getContentPane().add(vent4,BorderLayout.WEST);
-        //getContentPane().add(vent3,BorderLayout.EAST);
-        //getContentPane().add(picture,BorderLayout.SOUTH);
-
-        //acciones de botones
-        ActionListener oyenteBtnReg =new ActionButtons();
-        ActionListener oyenteBtnElim = new ActionButtons();
-        ActionListener oyenteBtnBusc = new ActionButtons();
-        ActionListener oyenteBtnO = new ActionButtons();
-        ActionListener oyenteBtnO2= new ActionButtons();
-        ActionListener oyenteBtnPor = new ActionButtons();
-
-        //conecxión
-        buttonRe.addActionListener(oyenteBtnReg);
-        buttonl.addActionListener(oyenteBtnElim);
-        buttonB.addActionListener(oyenteBtnBusc);
-        buttonOp1.addActionListener(oyenteBtnO);
-        buttonOp2.addActionListener(oyenteBtnO2);
-        buttonP.addActionListener(oyenteBtnPor);
+        //Creacion de oyente para el botón
+        ActionListener oyenteBtnCalc2= new ActionBtnCalc();
+        ActionListener oyenteBtnCalc3 = new ActionBtnCalc();
+        ActionListener oyenteBtnCalc =new ActionBtnCalc();
+        //Vínculo de boton con click
+        btn.addActionListener(oyenteBtnCalc);
+        btn2.addActionListener(oyenteBtnCalc2);
+        btn3.addActionListener(oyenteBtnCalc3);
 
     }
-    class ActionButtons implements ActionListener
-    {
+
+    class ActionBtnCalc implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            System.out.println("Presionaste el boton : " + ((JButton) e.getSource()).getText());
 
-            System.out.println("Presionaste el boton : "+((JButton)e.getSource()).getText());
+            // se crea las variables para lo selecionado del JComboBox
+            Integer distance = (Integer) cb1.getSelectedItem();
+            Integer time = (Integer) cb2.getSelectedItem();
+            Integer velocity= (Integer) cb3.getSelectedItem();
+            if(e.getSource().equals(btn))
+            {
+                //Se crea la variable de velocidad para calcular y convirtiendolo a double la respuesta
+                double Velocidad = (double) distance.intValue()/time.intValue();
+                //en el textField se agrega la respuesta ya de haberse calculado
+                txt.setText("velocidad-> "+Velocidad);
+            }
+            else if (e.getSource().equals(btn2))
+            {
+                //Se crea la Time de velocidad para calcular y convirtiendolo a double la respuesta
+                double Time = (double) distance.intValue()/velocity.intValue();
+                //en el textField se agrega la respuesta ya de haberse calculado
+                txt.setText("tiempo-> "+Time);
+            }
+            else if(e.getSource().equals(btn3))
+            {
+                //Se crea la Distance de velocidad para calcular y convirtiendolo a double la respuesta
+                double Distance = (double) time.intValue()*velocity.intValue();
+                //en el textField se agrega la respuesta ya de haberse calculado
+                txt.setText("distancia-> "+Distance);
+            }
 
-            if (e.getSource() == buttonB)
-            {
-                JOptionPane.showMessageDialog(null,"Buscar Pasajero","Buscar",JOptionPane.PLAIN_MESSAGE);
-            }
-            else if (e.getSource() == buttonRe)
-            {
-                JOptionPane.showMessageDialog(null,"Registrar Pasajero","Registrar",JOptionPane.PLAIN_MESSAGE);
-            }
-            else if(e.getSource() == buttonl)
-            {
-                JOptionPane.showMessageDialog(null,"Eliminar Pasajero","Eliminar",JOptionPane.PLAIN_MESSAGE);
-            }
-            else if (e.getSource() == buttonP)
-            {
-                JOptionPane.showMessageDialog(null,"Porcentaje Ocupación","Porcentaje",JOptionPane.PLAIN_MESSAGE);
-            }
-            else if (e.getSource() == buttonOp1)
-            {
-                JOptionPane.showMessageDialog(null,"Opción 1","Option",JOptionPane.PLAIN_MESSAGE);
-            }
-            else if (e.getSource() == buttonOp2)
-            {
-                JOptionPane.showMessageDialog(null,"Opción 2","Option",JOptionPane.PLAIN_MESSAGE);
-            }
         }
     }
 
-
-    public static void main (String[]args) {
-        Avionjimmy Aspirina = new Avionjimmy();
-        Aspirina.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Aspirina.pack();
-        Aspirina.setLocation(500,30);
-        Aspirina.setVisible(true);
-
+    public static void main (String args[])
+    {
+        // creación de Objeto para clase Examen1
+        Examen1 ventana = new Examen1();
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.pack();
+        ventana.setVisible(true);
     }
-
-
 }
